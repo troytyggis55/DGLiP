@@ -13,6 +13,16 @@ export default defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: 'preamble',
+            title: 'Ingress',
+            type: 'text',
+        }),
+        defineField({
+            name: 'mainImage',
+            title: 'Hovedbilde',
+            type: 'image',
+        }),
+        defineField({
             name: 'content',
             title: 'Innhold',
             type: 'blockContent',
