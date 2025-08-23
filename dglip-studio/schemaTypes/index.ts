@@ -1,4 +1,5 @@
 import blockContent from './blockContent'
 import course from './course'
+import aboutUs from './aboutUs'
 
-export const schemaTypes = [course, blockContent]
+export const schemaTypes = [aboutUs, course, blockContent]

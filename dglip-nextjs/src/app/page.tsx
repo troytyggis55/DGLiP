@@ -8,6 +8,9 @@ export default async function HomePage() {
             <Link href="/kurs" className="hover:underline">
                 Gå til kursoversikt
             </Link>
+            <Link href="/om-oss" className="hover:underline block mt-4">
+                Om oss
+            </Link>
         </main>
     );
 }
