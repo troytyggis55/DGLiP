@@ -29,7 +29,7 @@ export default async function CoursePage({
         : null;
 
     return (
-        <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
+        <main className="container mx-auto max-w-3xl p-8 flex flex-col gap-4">
             {/* Display slug */}
             <p className="text-sm text-gray-500">Slug: {course.slug?.current}</p>
             <Link href="/kurs" className="hover:underline">

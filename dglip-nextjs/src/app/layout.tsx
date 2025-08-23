@@ -31,7 +31,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
             >
                 <Header headerHeight={64}>
                     <div className="text-lg font-bold">DGLIP</div>
@@ -42,6 +42,12 @@ export default function RootLayout({
 
                 {children}
 
+                {/* footer stuck at bottom if not enough content */}
+                <div className="flex-grow" />
+
+                <footer className="mt-16 h-24 text-center text-sm text-gray-500 bg-red-600">
+                    &copy; {new Date().getFullYear()} DGLIP
+                </footer>
             </body>
         </html>
     );

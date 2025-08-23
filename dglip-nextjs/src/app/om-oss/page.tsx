@@ -20,7 +20,7 @@ export default async function AboutUsPage() {
         : null;
 
     return (
-        <main className="container mx-auto min-h-screen max-w-3xl p-8">
+        <main className="container mx-auto max-w-3xl p-8">
             {aboutUsImageUrl && (
                 <img src={aboutUsImageUrl}
                      alt={aboutUs.title}
