@@ -1,7 +1,7 @@
-import { PortableText, type SanityDocument } from "next-sanity";
+import {PortableText, type SanityDocument} from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { client } from "@/sanity/client";
+import type {SanityImageSource} from "@sanity/image-url/lib/types/types";
+import {client} from "@/sanity/client";
 import Link from "next/link";
 import MapClient from "@/app/components/MapClient";
 
@@ -15,10 +15,9 @@ const urlFor = (source: SanityImageSource) =>
 
 const options = { next: { revalidate: 30 } };
 
-
 export default async function PostPage({
-    params,
-}: {
+                                           params,
+                                       }: {
     params: Promise<{ slug: string }>;
 }) {
     const post = await client.fetch<SanityDocument>(POST_QUERY, await params, options);
@@ -35,7 +34,7 @@ export default async function PostPage({
         <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
             {/* Display slug */}
             <p className="text-sm text-gray-500">Slug: {post.slug?.current}</p>
-            <Link href="/" className="hover:underline">
+            <Link href="/kurs" className="hover:underline">
                 ← Tilbake til kursoversikt
             </Link>
             {postImageUrl && (
