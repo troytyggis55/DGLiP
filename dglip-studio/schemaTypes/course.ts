@@ -46,6 +46,14 @@ export default defineType({
             },
         }),
         defineField({
+            name: 'partner',
+            title: 'Samarbeidspartner',
+            type: 'reference',
+            to: [{type: 'partner'}],
+            description: 'Velg en samarbeidspartnere for dette kurset.',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
             name: 'importantInfo',
             title: 'Viktig informasjon',
             type: 'blockContent',

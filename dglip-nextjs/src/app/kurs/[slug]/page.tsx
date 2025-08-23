@@ -4,8 +4,10 @@ import Link from "next/link";
 import MapClient from "@/app/components/MapClient";
 import { urlFor } from "@/sanity/urlFor";
 
-const POST_QUERY = `*[_type == "course" && slug.current == $slug][0]`;
-
+const COURSE_QUERY = `*[_type == "course" && slug.current == $slug][0]{
+  ...,
+  partner->,
+}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -14,49 +16,82 @@ export default async function CoursePage({
                                        }: {
     params: Promise<{ slug: string }>;
 }) {
-    const post = await client.fetch<SanityDocument>(POST_QUERY, await params, options);
+    const course = await client.fetch<SanityDocument>(COURSE_QUERY, await params, options);
 
-    const position = { lat: post.location.lat, lng: post.location.lng };
+    const position = { lat: course.location.lat, lng: course.location.lng };
 
-    const postImageUrl = post.mainImage
-        ? urlFor(post.mainImage)?.width(550).height(310).url()
+    const mainImageUrl = course.mainImage
+        ? urlFor(course.mainImage)?.width(550).height(310).url()
         : null;
 
-    console.log("Env key:", process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY)
+    const partnerImageUrl = course.partner.image
+        ? urlFor(course.partner.image)?.width(200).height(200).url()
+        : null;
 
     return (
         <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
             {/* Display slug */}
-            <p className="text-sm text-gray-500">Slug: {post.slug?.current}</p>
+            <p className="text-sm text-gray-500">Slug: {course.slug?.current}</p>
             <Link href="/kurs" className="hover:underline">
                 ← Tilbake til kursoversikt
             </Link>
-            {postImageUrl && (
+            {mainImageUrl && (
                 <img
-                    src={postImageUrl}
-                    alt={post.title}
+                    src={mainImageUrl}
+                    alt={course.title}
                     width={550}
                     height={310}
                     className="aspect-video rounded-xl object-cover"
                 />
             )}
-            <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
+            <h1 className="text-4xl font-bold mb-8">{course.title}</h1>
             <div className="prose">
-                <p>{new Date(post.startDate).toLocaleDateString()} - {new Date(post.endDate).toLocaleDateString()}</p>
+                {course.partner && (
+                    <div className="my-6 p-4 border border-white rounded-lg">
+                        <h2 className="text-xl font-semibold mb-2">{course.partner.name}</h2>
+                        {partnerImageUrl && (
+                            <img
+                                src={partnerImageUrl}
+                                alt={course.partner.name}
+                                width={200}
+                                height={200}
+                                className="mb-2 rounded-lg object-cover"
+                            />
+                        )}
+                        <div>
+                            {course.partner.description && (
+                                <p className="text-sm">{course.partner.description}</p>
+                            )}
+                            {course.partner.website && (
+                                <a
+                                    href={course.partner.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline block mt-1"
+                                >
+                                    Besøk nettside
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                <p>{new Date(course.startDate).toLocaleDateString()} - {new Date(course.endDate).toLocaleDateString()}</p>
                 <div className="my-4">
                     <h2 className="text-2xl font-semibold">Sted</h2>
-                    <p>Latitude: {post.location.lat}, Longitude: {post.location.lng}</p>
+                    <p>Latitude: {course.location.lat}, Longitude: {course.location.lng}</p>
                     <MapClient apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''} position={position} />
                 </div>
-                {post.importantInfo && (
+                {course.importantInfo && (
                     <div>
                         <b>Viktig informasjon:</b>
-                        <PortableText value={post.importantInfo} />
+                        <PortableText value={course.importantInfo} />
                     </div>
-                )}                <br/>
-                <p>{post.preamble}</p>
+                )}
+                <br/>
+                <p>{course.preamble}</p>
                 <hr/>
-                {Array.isArray(post.body) && <PortableText value={post.body} />}
+                {Array.isArray(course.body) && <PortableText value={course.body} />}
             </div>
         </main>
     );
