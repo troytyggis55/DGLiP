@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-import {client} from "@/sanity/client";
-
-export default async function IndexPage() {
+export default async function HomePage() {
 
     return (
         <main className="container mx-auto min-h-screen max-w-3xl p-8">
