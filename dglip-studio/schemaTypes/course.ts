@@ -71,14 +71,4 @@ export default defineType({
             type: 'blockContent',
         }),
     ],
-
-    preview: {
-        select: {
-            title: 'title',
-            subtitle: 'preamble',
-            startDate: 'startDate',
-            endDate: 'endDate',
-            media: 'mainImage',
-        },
-    },
 })

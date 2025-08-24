@@ -18,5 +18,12 @@ export default defineType({
             },
             validation: (Rule) => Rule.required(),
         }),
+        defineField({
+            name: 'partners',
+            title: 'Aktive partnere',
+            type: 'array',
+            of: [{ type: 'reference', to: { type: 'partner' } }],
+            description: 'Velg partnere som skal vises på forsiden',
+        })
     ],
 })

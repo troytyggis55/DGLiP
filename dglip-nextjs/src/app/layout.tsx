@@ -41,7 +41,7 @@ export default function RootLayout({
                 <div style={{ height: "64px" }} />
                 {/* spacer to avoid content jump under fixed header */}
 
-                <div className="main-page-padding" >
+                <div className="main-page-padding root" >
                     {children}
                 </div>
 
