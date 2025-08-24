@@ -41,13 +41,13 @@ export default async function CoursePage({
                     alt={course.title}
                     width={550}
                     height={310}
-                    className="aspect-video rounded-xl object-cover"
+                    className="aspect-video object-cover"
                 />
             )}
             <h1 className="text-4xl font-bold mb-8">{course.title}</h1>
             <div className="prose">
                 {course.partner && (
-                    <div className="my-6 p-4 border border-white rounded-lg">
+                    <div className="my-6 p-4 border border-white">
                         <h2 className="text-xl font-semibold mb-2">{course.partner.name}</h2>
                         {partnerImageUrl && (
                             <img
@@ -55,7 +55,7 @@ export default async function CoursePage({
                                 alt={course.partner.name}
                                 width={200}
                                 height={200}
-                                className="mb-2 rounded-lg object-cover"
+                                className="mb-2 object-cover"
                             />
                         )}
                         <div>

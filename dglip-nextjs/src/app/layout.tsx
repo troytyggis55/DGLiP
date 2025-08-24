@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 import Header from "@/app/components/Header";
+import Link from "next/link";
 
 
 const geistSans = Geist({
@@ -34,18 +35,21 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
             >
                 <Header headerHeight={64}>
-                    <div className="text-lg font-bold">DGLIP</div>
+                    <Link href="/" className="text-lg font-bold">DGLiP</Link>
                 </Header>
 
                 <div style={{ height: "64px" }} />
                 {/* spacer to avoid content jump under fixed header */}
 
-                {children}
+                <div className="main-page-padding" >
+                    {children}
+                </div>
+
 
                 {/* footer stuck at bottom if not enough content */}
                 <div className="flex-grow" />
 
-                <footer className="mt-16 h-24 text-center text-sm text-gray-500 bg-red-600">
+                <footer className="mt-16 h-24 text-center text-sm text-gray-500 bg-red-600 main-page-padding">
                     &copy; {new Date().getFullYear()} DGLIP
                 </footer>
             </body>

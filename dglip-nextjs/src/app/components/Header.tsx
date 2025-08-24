@@ -61,7 +61,7 @@ export default function Header({ headerHeight, children }: { headerHeight: numbe
             style={{ transform: `translate3d(0, ${offset}px, 0)` }}
             className="fixed inset-x-0 top-0 z-50 h-16 bg-blue-600 will-change-transform"
         >
-            <div className="container mx-auto max-w-3xl px-8 h-full flex items-center center">
+            <div className="container mx-auto main-max-width main-page-padding h-full flex items-center center">
                 {children}
             </div>
         </header>
