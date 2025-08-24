@@ -14,8 +14,17 @@ export const structure: StructureResolver = (S) =>
             .schemaType('aboutUs')
             .documentId('aboutUs')
         ),
+      S.listItem()
+        .id('frontpage')
+        .schemaType('frontpage')
+        .title('Forside')
+        .child(
+          S.editor()
+            .id('frontpage')
+            .schemaType('frontpage')
+            .documentId('frontpage')
+        ),
       ...S.documentTypeListItems().filter(
-        (item) => item.getId() && !['aboutUs'].includes(item.getId()!)
+        (item) => item.getId() && !['aboutUs', 'frontpage'].includes(item.getId()!)
       ),
     ]);
-

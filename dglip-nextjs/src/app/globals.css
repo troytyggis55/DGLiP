@@ -24,3 +24,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.main-max-width {
+  max-width: 64rem; /* Tailwind's max-w-3xl is 48rem */
+}
+
+.main-page-padding {
+  padding-inline: 2rem;
+}
