@@ -25,6 +25,6 @@ export default defineConfig({
     },
 
     document: {
-        newDocumentOptions: (prev) => prev.filter((item) => item.templateId !== 'aboutUs' && item.templateId !== 'frontpage'),
+        newDocumentOptions: (prev) => prev.filter((item) => item.templateId !== 'aboutUs' && item.templateId !== 'frontpage' && item.templateId !== 'imageCarousel'),
     },
 })

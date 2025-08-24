@@ -10,7 +10,7 @@ export const structure: StructureResolver = (S) =>
         .title('Om oss')
         .child(
           S.editor()
-            .id('about')
+            .id('aboutUs')
             .schemaType('aboutUs')
             .documentId('aboutUs')
         ),
@@ -24,7 +24,17 @@ export const structure: StructureResolver = (S) =>
             .schemaType('frontpage')
             .documentId('frontpage')
         ),
+      S.listItem()
+        .id('imageCarousel')
+        .schemaType('imageCarousel')
+        .title('Bildekarusell')
+        .child(
+            S.editor()
+                .id('imageCarousel')
+                .schemaType('imageCarousel')
+                .documentId('imageCarousel')
+        ),
       ...S.documentTypeListItems().filter(
-        (item) => item.getId() && !['aboutUs', 'frontpage'].includes(item.getId()!)
+        (item) => item.getId() && !['aboutUs', 'frontpage', 'imageCarousel'].includes(item.getId()!)
       ),
     ]);

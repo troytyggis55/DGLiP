@@ -4,6 +4,7 @@ import { SanityDocument } from "@sanity/client";
 import { urlFor } from "@/sanity/urlFor";
 import CourseCard from "@/app/components/CourseCard";
 import PartnerAccordion from "@/app/components/PartnerAccordion";
+import ImageCarousel from "@/app/components/ImageCarousel";
 
 // Placeholder for main images
 const IMAGE_QUERY = `*[_type == "frontpage"][0]{
@@ -29,6 +30,10 @@ const PARTNER_OVERVIEW = `*[_type == "partner"]{
     website
 }`;
 
+const IMAGE_CAROUSEL_QUERY = `*[_type == "imageCarousel"][0]{
+    images
+}`;
+
 const options = { next: { revalidate: 30 } };
 
 
@@ -36,6 +41,7 @@ export default async function HomePage() {
     const frontpage = await client.fetch<SanityDocument>(IMAGE_QUERY, {}, options);
     const courses = await client.fetch<SanityDocument[]>(COURSE_QUERY, {}, options);
     const partners = await client.fetch<SanityDocument[]>(PARTNER_OVERVIEW);
+    const imageCarousel = await client.fetch<SanityDocument>(IMAGE_CAROUSEL_QUERY, {}, options);
 
     const mainImageUrl = urlFor(frontpage.image)?.width(1200).height(600).url();
 
@@ -66,6 +72,8 @@ export default async function HomePage() {
             </Link>
 
             <PartnerAccordion partners={partners} />
+            
+            <ImageCarousel imageCarousel={imageCarousel}/>
 
             <Link href="/om-oss" className="hover:underline block mt-4">
                 Om oss
