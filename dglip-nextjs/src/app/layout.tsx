@@ -41,10 +41,7 @@ export default function RootLayout({
                 <div style={{ height: "64px" }} />
                 {/* spacer to avoid content jump under fixed header */}
 
-                <div className="main-page-padding root" >
-                    {children}
-                </div>
-
+                {children}
 
                 {/* footer stuck at bottom if not enough content */}
                 <div className="flex-grow" />

@@ -1,31 +1,31 @@
-import Link from "next/link";
 import {type SanityDocument} from "next-sanity";
 
 import {client} from "@/sanity/client";
+import CourseCard from "@/app/components/CourseCard";
 
-const POSTS_QUERY = `*[
+const COURSE_QUERY = `*[
   _type == "course"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, slug, startDate}`;
+]|order(publishedAt desc)[0...12]{_id, title, slug, startDate, mainImage, preamble}`;
 
 const options = { next: { revalidate: 30 } };
 
 export default async function CoursesPage() {
-    const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
+    const courses = await client.fetch<SanityDocument[]>(COURSE_QUERY, {}, options);
 
     return (
-        <main className="container mx-auto main-max-width p-8">
+        <main className="default-main-page">
             <h1 className="text-4xl font-bold mb-8">Kurs</h1>
-            <ul className="flex flex-col gap-y-4">
-                {posts.map((post) => (
-                    <li className="hover:underline" key={post._id}>
-                        <Link href={`/kurs/${post.slug.current}`}>
-                            <h2 className="text-xl font-semibold">{post.title}</h2>
-                            <p>{new Date(post.startDate).toLocaleDateString()}</p>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+
+
+            <div className="flex flex-row flex-wrap justify-center gap-8 mt-32">
+                { courses.map((course) => {
+                    return (
+                        <CourseCard key={course._id || course.slug?.current} course={course}/>
+                    )
+                })}
+            </div>
+
         </main>
     );
 }

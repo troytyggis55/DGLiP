@@ -13,10 +13,11 @@ export default function ImageCarousel({ imageCarousel }: { imageCarousel: Sanity
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
+        waitForAnimate: false
     };
 
     return (
-        <Slider {...settings}>
+        <Slider {...settings} className="mb-8">
             {imageCarousel.images.map((image: SanityImageSource, index: number) => {
                 const imageUrl = urlFor(image)?.url();
 

@@ -35,3 +35,12 @@ body {
 .main-page-padding {
   padding-inline: 2rem;
 }
+
+.default-main-page {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 64rem;
+    padding-inline: 2rem;
+    margin-block: 2rem;
+    align-self: center;
+}
