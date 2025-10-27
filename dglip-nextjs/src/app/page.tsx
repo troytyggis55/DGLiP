@@ -66,17 +66,20 @@ export default async function HomePage() {
                 />
             </div>
 
-            <div className="flex flex-row flex-wrap justify-center gap-8 mt-32">
-                { courses.map((course) => {
-                    return (
-                        <CourseCard key={course._id || course.slug?.current} course={course}/>
-                    )
-                })}
+            <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mt-32 py-8 bg-contrast">
+                <div className="flex flex-row flex-wrap justify-center gap-8">
+                    { courses.map((course) => {
+                        return (
+                                <CourseCard key={course._id || course.slug?.current} course={course}/>
+                            )
+                        })
+                    }
+                </div>
+                <Link href="/kurs" className="underline block mt-8 text-center">
+                    Se alle våre kurs
+                </Link>
             </div>
 
-            <Link href="/kurs" className="underline block mt-8">
-                Se alle våre kurs
-            </Link>
 
             <PartnerAccordion partners={partners} />
             

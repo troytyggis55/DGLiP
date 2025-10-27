@@ -12,7 +12,7 @@ export default function CourseCard({ course }: { course: SanityDocument }) {
     return (
         <a
             href={`/kurs/${course.slug.current}`}
-            className="block overflow-hidden max-w-md h-72 border border-gray-200"
+            className="block overflow-hidden max-w-md h-72 border bg-background"
         >
             {courseImageUrl && (
                 <img
