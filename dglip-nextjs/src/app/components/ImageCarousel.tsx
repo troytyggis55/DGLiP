@@ -25,12 +25,14 @@ export default function ImageCarousel({ imageCarousel }: { imageCarousel: Sanity
                 const imageUrl = urlFor(image)?.url();
 
                 return (
-                <div key={index} className="px-2 items-center">
-                    <img src={imageUrl}
-                         alt={"Carousel image " + (index + 1)}
-                         className="w-full h-64 object-cover"
+                  <div key={index} className="px-2 flex items-center" style={{ height: "16rem" }}>
+                    <img
+                      src={imageUrl}
+                      alt={"Carousel image " + (index + 1)}
+                      className="w-full object-cover"
+                      style={{ height: "16rem" }}
                     />
-                </div>
+                  </div>
                 );
             })}
         </Slider>

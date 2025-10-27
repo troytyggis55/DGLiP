@@ -6,27 +6,25 @@ import { SanityDocument } from "@sanity/client";
 export default function CourseCard({ course }: { course: SanityDocument }) {
 
     const courseImageUrl = course.mainImage
-        ? urlFor(course.mainImage)?.width(400).height(200).url()
+        ? urlFor(course.mainImage)?.width(400).height(400).url()
         : null;
 
     return (
         <a
             href={`/kurs/${course.slug.current}`}
-            className="block overflow-hidden max-w-md h-72 border bg-background"
+            className="block w-md border border-gray-300 bg-background"
         >
             {courseImageUrl && (
                 <img
                     src={courseImageUrl}
                     alt={course.title}
-                    width={400}
-                    height={200}
-                    className="w-full h-48 object-cover"
+                    className="max-h-52 w-full object-cover"
                 />
             )}
 
-            <div className="p-2">
+            <div className="p-2 h-32">
                 <h2 className="text-xl font-semibold">{course.title}</h2>
-                {course.preamble && <p className="text-sm">{course.preamble}</p>}
+                {course.preamble && <p className="text-sm line-clamp-4">{course.preamble}</p>}
             </div>
         </a>
     );

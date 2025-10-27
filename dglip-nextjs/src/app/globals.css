@@ -88,3 +88,15 @@ a, button {
     margin-block: 2rem;
     align-self: center;
 }
+
+.portable-text-headings h1 {
+    margin-top: 1.5em;
+}
+
+.portable-text-headings h2 {
+    margin-top: 1.25em;
+}
+
+.portable-text-headings h3 {
+    margin-top: 1em;
+}

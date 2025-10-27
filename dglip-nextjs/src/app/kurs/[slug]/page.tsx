@@ -29,45 +29,57 @@ export default async function CoursePage({
         : null;
 
     return (
-        <main className="default-main-page">
-            {/* Display slug */}
-            <p className="text-sm text-gray-500">Slug: {course.slug?.current}</p>
-            <Link href="/kurs" className="hover:underline">
-                ← Tilbake til kursoversikt
-            </Link>
+        <main className="default-main-page !mt-0">
             {mainImageUrl && (
-                <img
-                    src={mainImageUrl}
-                    alt={course.title}
-                    width={550}
-                    height={310}
-                    className="aspect-video object-cover"
-                />
+                <div className="relative">
+                    <img
+                        src={mainImageUrl}
+                        alt={course.title}
+                        className="w-full"
+                    />
+                    <h1
+                        className="text-6xl font-bold m-2 absolute left-0 bottom-0 text-background"
+                    >
+                        {course.title}
+                    </h1>
+                </div>
             )}
-            <h1 className="text-4xl font-bold mb-8">{course.title}</h1>
-            <div className="prose">
+
+            <p className="my-8 text-xl">{course.preamble}</p>
+
+            <h2>Oppsummering</h2>
+            <div className="grid gap-8 w-full justify-center sm:grid-cols-2 md:grid-cols-3">
+                <div className="w-full md:col-span-2">
+                    <p>{new Date(course.startDate).toLocaleDateString()} - {new Date(course.endDate).toLocaleDateString()}</p>
+                    <PortableText value={course.importantInfo} />
+                    <MapClient
+                        apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}
+                        position={position}
+                        className="w-full h-64 mt-4"
+                    />
+                </div>
                 {course.partner && (
-                    <div className="my-6 p-4 border border-white">
+                    <div>
                         <h2 className="text-xl font-semibold mb-2">{course.partner.name}</h2>
-                        {partnerImageUrl && (
-                            <img
-                                src={partnerImageUrl}
-                                alt={course.partner.name}
-                                width={200}
-                                height={200}
-                                className="mb-2 object-cover"
-                            />
-                        )}
+
                         <div>
                             {course.partner.description && (
-                                <p className="text-sm">{course.partner.description}</p>
+                                <p className="">
+                                    {partnerImageUrl && (
+                                        <img
+                                            src={partnerImageUrl}
+                                            alt={course.partner.name}
+                                            className="inline-block w-64"
+                                        />
+                                    )}
+                                    {course.partner.description}
+                                </p>
                             )}
                             {course.partner.website && (
                                 <a
                                     href={course.partner.website}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-blue-600 hover:underline block mt-1"
                                 >
                                     Besøk nettside
                                 </a>
@@ -75,22 +87,11 @@ export default async function CoursePage({
                         </div>
                     </div>
                 )}
+            </div>
 
-                <p>{new Date(course.startDate).toLocaleDateString()} - {new Date(course.endDate).toLocaleDateString()}</p>
-                <div className="my-4">
-                    <h2 className="text-2xl font-semibold">Sted</h2>
-                    <p>Latitude: {course.location.lat}, Longitude: {course.location.lng}</p>
-                    <MapClient apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''} position={position} />
-                </div>
-                {course.importantInfo && (
-                    <div>
-                        <b>Viktig informasjon:</b>
-                        <PortableText value={course.importantInfo} />
-                    </div>
-                )}
-                <br/>
-                <p>{course.preamble}</p>
-                <hr/>
+            <hr className="my-8"/>
+
+            <div className="portable-text-headings">
                 {Array.isArray(course.body) && <PortableText value={course.body} />}
             </div>
         </main>

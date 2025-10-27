@@ -2,18 +2,18 @@
 
 import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 
-interface MapClientProps {
+
+export default function MapClient({ apiKey, position, className }: {
   apiKey: string;
   position: { lat: number; lng: number };
-}
-
-export default function MapClient({ apiKey, position }: MapClientProps) {
+  className?: string;
+}) {
   return (
     <APIProvider apiKey={apiKey}>
       <Map
-        center={position}
-        zoom={10}
-        style={{ width: "100%", height: "400px" }}
+        defaultCenter={position}
+        defaultZoom={16}
+        className={className}
       >
         <Marker position={position} />
       </Map>
