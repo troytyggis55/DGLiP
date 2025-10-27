@@ -81,24 +81,21 @@ export default async function HomePage() {
                 </Link>
             </StretchedDiv>
 
+            <ImageCarousel imageCarousel={imageCarousel} className="my-32"/>
 
             <StretchedDiv className="bg-secondary text-background my-32 py-16">
                 <h2 className="text-center">Våre sammarbeidspartnere</h2>
                 <PartnerAccordion partners={partners} />
             </StretchedDiv>
 
-            <div className="my-32">
-                <ImageCarousel imageCarousel={imageCarousel}/>
-            </div>
-
             <Link href="/om-oss" className="hover:underline block mt-4">
-                <div className="flex flex-row justify-around items-center">
+                <div className="flex flex-col gap-8 sm:flex-row justify-around items-center">
                     <img
                         src={aboutUsImageUrl}
                         alt="Om oss bilde"
-                        className="w-1/3 min-w-0 max-w-full aspect-[4/3] object-cover h-auto"
+                        className="w-full sm:w-1/2"
                     />
-                    <div className="ml-8">
+                    <div>
                         <h2 className="text-2xl font-bold">{aboutUs.title}</h2>
                         <p className="mt-4">{aboutUs.preamble}</p>
                     </div>

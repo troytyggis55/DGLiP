@@ -6,7 +6,7 @@ import {urlFor} from "@/sanity/urlFor";
 import {SanityDocument} from "@sanity/client";
 import {SanityImageSource} from "@sanity/image-url/lib/types/types";
 
-export default function ImageCarousel({ imageCarousel }: { imageCarousel: SanityDocument }) {
+export default function ImageCarousel({ imageCarousel, className }: { imageCarousel: SanityDocument, className?: string }) {
     const settings = {
         dots: true,
         infinite: true,
@@ -20,7 +20,7 @@ export default function ImageCarousel({ imageCarousel }: { imageCarousel: Sanity
     };
 
     return (
-        <Slider {...settings} className="mb-8">
+        <Slider {...settings} className={className}>
             {imageCarousel.images.map((image: SanityImageSource, index: number) => {
                 const imageUrl = urlFor(image)?.url();
 
