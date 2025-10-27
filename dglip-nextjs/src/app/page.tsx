@@ -5,6 +5,7 @@ import { urlFor } from "@/sanity/urlFor";
 import CourseCard from "@/app/components/CourseCard";
 import PartnerAccordion from "@/app/components/PartnerAccordion";
 import ImageCarousel from "@/app/components/ImageCarousel";
+import StretchedDiv from "@/app/components/StretchedDiv";
 
 // Placeholder for main images
 const IMAGE_QUERY = `*[_type == "frontpage"][0]{
@@ -62,11 +63,11 @@ export default async function HomePage() {
                 <img
                     src={mainImageUrl}
                     alt="Hovedbilde"
-                    className="w-full md:w-3/4 min-w-0 max-w-full aspect-[4/3] object-cover h-auto"
+                    className="w-full md:w-3/4 min-w-0 max-w-full aspect-[4/3] object-cover h-auto shadow-[-16px_16px_0_0_theme(colors.primary)]"
                 />
             </div>
 
-            <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mt-32 py-8 bg-contrast">
+            <StretchedDiv className="bg-contrast my-32 py-16">
                 <div className="flex flex-row flex-wrap justify-center gap-8">
                     { courses.map((course) => {
                         return (
@@ -78,12 +79,17 @@ export default async function HomePage() {
                 <Link href="/kurs" className="underline block mt-8 text-center">
                     Se alle våre kurs
                 </Link>
+            </StretchedDiv>
+
+
+            <StretchedDiv className="bg-secondary text-background my-32 py-16">
+                <h2 className="text-center">Våre sammarbeidspartnere</h2>
+                <PartnerAccordion partners={partners} />
+            </StretchedDiv>
+
+            <div className="my-32">
+                <ImageCarousel imageCarousel={imageCarousel}/>
             </div>
-
-
-            <PartnerAccordion partners={partners} />
-            
-            <ImageCarousel imageCarousel={imageCarousel}/>
 
             <Link href="/om-oss" className="hover:underline block mt-4">
                 <div className="flex flex-row justify-around items-center">

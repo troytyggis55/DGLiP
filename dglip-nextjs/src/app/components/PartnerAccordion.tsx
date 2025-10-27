@@ -8,12 +8,10 @@ export default function PartnerAccordion({ partners }: { partners: SanityDocumen
     return (
         <Accordion.Root openMultiple={false} className="flex w-full flex-col justify-center">
             {partners.map((partner, idx) => {
-                const imageUrl = urlFor(partner.image)?.width(600).height(400).url();
-
                 return (
                     <Accordion.Item className="border-b border-gray-200" key={idx}>
                         <Accordion.Trigger className="group relative flex w-full items-baseline justify-between gap-4 py-2 pr-1 pl-3 text-left font-medium">
-                            <p>{partner.name}</p>
+                            <h3>{partner.name}</h3>
                             <img
                                 src="/chevron_updown.svg"
                                 alt="Toggle"

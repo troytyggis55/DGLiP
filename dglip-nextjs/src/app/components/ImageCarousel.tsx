@@ -10,10 +10,13 @@ export default function ImageCarousel({ imageCarousel }: { imageCarousel: Sanity
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 2000,
         slidesToShow: 5,
         slidesToScroll: 1,
-        waitForAnimate: false
+        waitForAnimate: false,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        cssEase: "linear"
     };
 
     return (
@@ -22,9 +25,10 @@ export default function ImageCarousel({ imageCarousel }: { imageCarousel: Sanity
                 const imageUrl = urlFor(image)?.url();
 
                 return (
-                <div key={index}>
+                <div key={index} className="px-2 items-center">
                     <img src={imageUrl}
-                         alt={"Carousel image " + (index + 1)} className="w-full h-auto mx-2"
+                         alt={"Carousel image " + (index + 1)}
+                         className="w-full h-64 object-cover"
                     />
                 </div>
                 );

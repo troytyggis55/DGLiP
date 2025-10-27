@@ -25,7 +25,7 @@ export default function RootLayout({
             >
                 <Header headerHeight={64}>
                     <Link href="/">
-                        <h2 className="leading-4">Det<br/>gode liv<br/>i Provence</h2>
+                        <h3 className="leading-4">Det<br/>gode liv<br/>i Provence</h3>
                     </Link>
                 </Header>
 
