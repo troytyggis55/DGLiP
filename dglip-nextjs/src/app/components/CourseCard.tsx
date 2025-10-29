@@ -24,7 +24,7 @@ export default function CourseCard({ course }: { course: SanityDocument }) {
 
             <div className="p-2 h-32">
                 <h2 className="text-xl font-semibold">{course.title}</h2>
-                {course.preamble && <p className="text-sm line-clamp-4">{course.preamble}</p>}
+                {course.preamble && <p className="text-sm font-normal line-clamp-4">{course.preamble}</p>}
             </div>
         </a>
     );

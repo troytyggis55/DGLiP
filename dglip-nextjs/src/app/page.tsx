@@ -76,8 +76,8 @@ export default async function HomePage() {
                         })
                     }
                 </div>
-                <Link href="/kurs" className="underline block mt-8 text-center">
-                    Se alle våre kurs
+                <Link href="/kurs" className="hover:underline block mt-8 text-center">
+                    <h2>Se alle våre kurs</h2>
                 </Link>
             </StretchedDiv>
 
@@ -88,7 +88,7 @@ export default async function HomePage() {
                 <PartnerAccordion partners={partners} />
             </StretchedDiv>
 
-            <Link href="/om-oss" className="hover:underline block mt-4">
+            <Link href="/om-oss" className="block mt-4">
                 <div className="flex flex-col gap-8 sm:flex-row justify-around items-center">
                     <img
                         src={aboutUsImageUrl}
@@ -96,8 +96,8 @@ export default async function HomePage() {
                         className="w-full sm:w-1/2"
                     />
                     <div>
-                        <h2 className="text-2xl font-bold">{aboutUs.title}</h2>
-                        <p className="mt-4">{aboutUs.preamble}</p>
+                        <h2 className="text-2xl font-bold hover:underline">{aboutUs.title}</h2>
+                        <p className="mt-4 font-normal">{aboutUs.preamble}</p>
                     </div>
                 </div>
             </Link>
