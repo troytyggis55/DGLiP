@@ -1,6 +1,5 @@
 "use client";
 import {SanityDocument} from "@sanity/client";
-import {urlFor} from "@/sanity/urlFor";
 
 import { Accordion } from "@base-ui-components/react/accordion";
 

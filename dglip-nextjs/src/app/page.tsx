@@ -8,7 +8,7 @@ import ImageCarousel from "@/app/components/ImageCarousel";
 import StretchedDiv from "@/app/components/StretchedDiv";
 
 // Placeholder for main images
-const IMAGE_QUERY = `*[_type == "frontpage"][0]{
+const FRONTPAGE_QUERY = `*[_type == "frontpage"][0]{
     image,
     partners[]->{
         name,
@@ -24,13 +24,6 @@ const COURSE_QUERY = `*[_type == "course"][0...2]{
     preamble,
 }`;
 
-const PARTNER_OVERVIEW = `*[_type == "partner"]{
-    name,
-    image,
-    description,
-    website
-}`;
-
 const IMAGE_CAROUSEL_QUERY = `*[_type == "imageCarousel"][0]{
     images
 }`;
@@ -44,9 +37,8 @@ const ABOUT_US_QUERY = `*[_type == "aboutUs"][0]{
 const options = { next: { revalidate: 30 } };
 
 export default async function HomePage() {
-    const frontpage = await client.fetch<SanityDocument>(IMAGE_QUERY, {}, options);
+    const frontpage = await client.fetch<SanityDocument>(FRONTPAGE_QUERY, {}, options);
     const courses = await client.fetch<SanityDocument[]>(COURSE_QUERY, {}, options);
-    const partners = await client.fetch<SanityDocument[]>(PARTNER_OVERVIEW, {}, options);
     const imageCarousel = await client.fetch<SanityDocument>(IMAGE_CAROUSEL_QUERY, {}, options);
     const aboutUs = await client.fetch<SanityDocument>(ABOUT_US_QUERY, {}, options);
 
@@ -85,7 +77,7 @@ export default async function HomePage() {
 
             <StretchedDiv className="bg-secondary text-background my-32 py-16">
                 <h2 className="text-center">Våre sammarbeidspartnere</h2>
-                <PartnerAccordion partners={partners} />
+                <PartnerAccordion partners={frontpage.partners} />
             </StretchedDiv>
 
             <Link href="/om-oss" className="block mt-4">
