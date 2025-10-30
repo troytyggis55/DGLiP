@@ -62,14 +62,21 @@ export default function Header() {
     const [isHamburger, setIsHamburger] = React.useState(false);
 
     useEffect(() => {
-        const handleResize = () => setIsHamburger(window.innerWidth < 768);
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setShowOverlay(false);
+                setIsHamburger(false)
+            } else {
+                setIsHamburger(true)
+            }
+        };
         handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     const hamburger = <svg className="cursor-pointer" onClick={() => setShowOverlay(!showOverlay)} xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#2b2c36"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-    const close = <svg className="fixed right-8 top-4 z-50 cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#2b2c36"><path d="M249-207 480-438l231 231 57-57-231-231 231-231-57-57-231 231-231-231-57 57 231 231-231 231 57 57Z"/></svg>
+    const close = <svg className="fixed right-8 top-4 z-50 cursor-pointer" onClick={() => setShowOverlay(false)} xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#2b2c36"><path d="M249-207 480-438l231 231 57-57-231-231 231-231-57-57-231 231-231-231-57 57 231 231-231 231 57 57Z"/></svg>
 
     return (
         <>
@@ -102,12 +109,14 @@ export default function Header() {
                             </div>
                         )}
 
-                        {showOverlay && <HamburgerOverlay onClose={() => setShowOverlay(false)} />}
-                        {showOverlay && close }
                     </div>
                 </div>
             </header>
+
             <div style={{ height: "64px" }} />
+
+            {showOverlay && <HamburgerOverlay onClose={() => setShowOverlay(false)} />}
+            {showOverlay && close }
         </>
     );
 }
